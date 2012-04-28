@@ -1,0 +1,26 @@
+<head>
+  <title>cleney</title>
+</head>
+
+<body>
+  {{> hello}}
+  {{> lists}}
+</body>
+
+<template name="hello">
+  <div class="hello">
+    <h1>Hello World!</h1>
+    {{greeting}}
+    <input type="button" value="Click" />
+  </div>
+</template>
+
+<template name="lists">
+  <div>This is the lists, todo...</div>
+  <div>TODO: create a data named list, show it on the page. client can insert list item into the list, for example, a input field.</div>
+  <div>
+    {{#each lists}}
+      <div>{{name}}</div>
+    {{/each}}
+  </div>
+</template>

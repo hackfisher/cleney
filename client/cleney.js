@@ -1,17 +1,15 @@
-var translate2date = function (list) {
-  for (var i = 0; i < list.size(); i ++) {
-    if (list[i].timestamp) {
-      list[i].timestamp = new Date(list[i].timestamp);
-    }
+// TODO: to be replaced by cursor.map
+var time_mapper = function (item) {
+  if (item.timestamp) {
+    return $.extend(item, {timestamp: new Date(item.timestamp)});
+  } else {
+    return item;
   }
-  
-  return list;
 };
-
 
 var category_list_finder = function (x) {
   return function () {
-    return Lists.find({status_id: x}, {sort: {timestamp: 1}});
+    return Lists.find({status_id: x}, {sort: {timestamp: 1}}).map(time_mapper);
   }
 };
 
@@ -22,7 +20,7 @@ Lists = new Meteor.Collection("lists");
 Meteor.startup(function () {
 $("#default_view").append(
   Meteor.ui.render(function () {
-    return Template.item_list({list: Lists.find({}, {sort: {timestamp: 1}})});
+    return Template.item_list({list: Lists.find({}, {sort: {timestamp: 1}}).map(time_mapper)});
   })
 );
 

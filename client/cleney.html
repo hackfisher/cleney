@@ -3,32 +3,37 @@
 </head>
 
 <body>
-  {{> hello}}
-  {{> additem}}
-  {{> lists}}
+  {{> add_item}}
+  {{> list_view}}
 </body>
 
-<template name="hello">
-  <div class="hello">
-    <h1>Hello World!</h1>
-    {{greeting}}
-    <input type="button" value="Click" />
-  </div>
-</template>
-
-<template name="additem">
-  <div class="additem">
+<template name="add_item">
+  <div class="add_item">
     <h1>Add Item</h1>
     <input type="text" size="30" name="item" id="itemtext"/>
     <input type="button" value="add" id="itemadd" />
   </div>
 </template>
 
-<template name="lists">
-  <div>This is the lists, todo...</div>
-  <div>
-    {{#each lists}}
-      <div>{{name}}</div>
+<template name="list_view">
+  <div id="show_default_view"/>
+  <div id="show_category_view"/>
+  <div id="default_view"/>
+  <div id="category_view"/>
+</template>
+
+<template name="item_list">
+   <div class="item-list">
+    {{#each list}}
+      <li class="{{done_class}}">
+        <div class="todo">
+          <div class="destroy"></div>
+          <div class="display">
+            <input class="check" name="markdone" type="checkbox" {{{done_checkbox}}} />
+            <div class="todo-text">{{text}},{{timestamp}}</div>
+          </div>
+        </div>
+      </li>
     {{/each}}
   </div>
 </template>

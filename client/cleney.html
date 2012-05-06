@@ -13,12 +13,7 @@
 				<div class="span6">
 					<div>
 						<h2>视图</h2>
-						<div class="pull-right">
-							<div class="btn-group" data-toggle="buttons-radio">
-							<button class="btn btn-primary active" id="show_all_view">全部</button>
-							<button class="btn btn-primary" id="show_category_view">分类</button>
-							</div>
-						</div>
+						{{> list_view}}
 					</div>
 					<div id="all_view">
 					</div>
@@ -29,6 +24,15 @@
 		</div>
 	</div>
 </body>
+
+<template name="list_view">
+	<div class="pull-right">
+		<div class="btn-group" data-toggle="buttons-radio">
+			<button class="btn btn-primary active" id="show_all_view">全部</button>
+			<button class="btn btn-primary" id="show_category_view">分类</button>
+		</div>
+	</div>
+</template>
 
 <template name="add_item">
 	<div>

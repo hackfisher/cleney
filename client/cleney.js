@@ -51,14 +51,14 @@ Template.list_view.events = {
   },
 
   'click button#show_category_view' : function () {
-	  alert("category");
-    $("#default_view").hide();
+    $("#all_view").hide();
     $("#category_view").show();
   }
 };
 
 Template.list_item.events = {
-	'click span.destropy' : function () {
+	'click span.destroy' : function () {
+		alert("test");
 		Lists.update({_id: this._id}, {$set: {status_id: 2}});
 	},
 

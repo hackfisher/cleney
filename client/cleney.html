@@ -39,8 +39,7 @@
 		<h2>添加项</h2>
 		<form class="well">
 			<label>TODO</label>
-			<input id="itemtext" type="text" class="span3" placeholder="Type something…">
-			<span class="help-block">在这里输入你想添加的TODO项</span>
+			<input id="itemtext" type="text" class="span3" placeholder="输入你想添加的TODO...">
 			</label>
 			<button id="itemadd" type="button" class="btn">添加</button>
 		</form>
@@ -48,7 +47,8 @@
 </template>
 
 <template name="item_list">
-	<div class="item-list">
+	<div class="item-list well">
+		<h3>{{list_title}}</h3>
 		<ul class="unstyled">
 			{{#each list}}
 				{{> list_item}}
@@ -59,9 +59,9 @@
 
 <template name="list_item">
 	<li>
-		<div class="todo">
+	<div class="todo {{done_class}}">
 			<span class="destroy"><i class="icon-remove"></i></span>
-			<input class="check" name="markdone" type="checkbox"/>
+			<input class="check" name="markdone" type="checkbox" {{{done_checkbox}}} />
 			<span class="todo-text">{{text}},{{timestamp}}</span>
 		</div>
 	</li>

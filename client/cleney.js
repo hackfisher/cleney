@@ -20,20 +20,21 @@ Lists = new Meteor.Collection("lists");
 Meteor.startup(function () {
 	$("#all_view").append(
 	  Meteor.ui.render(function () {
-	    return Template.item_list({list: Lists.find({}, {sort: {timestamp: 1}}).map(time_mapper)});
+	    return Template.item_list({list: Lists.find({}, {sort: {timestamp: 1}}).map(time_mapper), list_title: "所有的TODO列表"});
 	  })
 	);
 
+	var category_list_titles = ["待做TODO列表", "已完成的TODO列表", "已删除的TODO列表"];
 	for (var i = 0; i < 3; i ++) {
 	  $("#category_view").append(
 	    Meteor.ui.render(function () {
-	      return Template.item_list({list: category_list_finder(i)});
+	      return Template.item_list({list: category_list_finder(i), list_title: category_list_titles[i]});
 	    })
 	  );
 	}
 
-  $("#all_view").show();
-  $("#category_view").hide();
+  $("#all_view").hide();
+  $("#category_view").show();
 });
 
 // add list item
@@ -58,12 +59,19 @@ Template.list_view.events = {
 
 Template.list_item.events = {
 	'click span.destroy' : function () {
-		alert("test");
-		Lists.update({_id: this._id}, {$set: {status_id: 2}});
+		if (this.status_id != 2) {
+			Lists.update({_id: this._id}, {$set: {status_id: 2}});
+		} else {
+			Lists.update({_id: this._id}, {$set: {status_id: 0}});
+		}
 	},
 
 	'click input.check' : function () {
-		Lists.update({_id: this._id}, {$set: {status_id: 1}});
+		if (this.status_id != 1) {
+			Lists.update({_id: this._id}, {$set: {status_id: 1}});
+		} else {
+			Lists.update({_id: this._id}, {$set: {status_id: 0}});
+		}
 	}
 };
 

@@ -39,9 +39,18 @@ Meteor.startup(function () {
 
 // add list item
 Template.add_item.events = {
-  'click button#itemadd' : function () {
-    var value = $("input#itemtext").val();
-    Lists.insert({project: "default", text: value, tags: [], timestamp: (new Date()).getTime(), status_id: 0}); 
+  'click button#itemadd' : function (event) {
+	  var $textinput = $("input#itemtext");
+	  var value = $textinput.val();
+	  Lists.insert({project: "default", text: value, tags: [], timestamp: (new Date()).getTime(), status_id: 0}); 
+	  $textinput.val("");
+  },
+
+  'keydown input#itemtext' : function (event) {
+	  if (event.keyCode == 13) {
+		  $('button#itemadd').click();
+		  event.preventDefault();
+	  }
   }
 };
 

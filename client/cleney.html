@@ -1,41 +1,64 @@
 <head>
-  <title>cleney</title>
+<title>Bootstrap Test</title>
 </head>
 
 <body>
-  {{> add_item}}
-  {{> list_view}}
+	<div class="container">
+		<div class="todos">
+			<h1>TODO List FOR Developers</h1>
+			<div class="row">
+				<div class="span6">
+					{{> add_item}}
+				</div>
+				<div class="span6">
+					<div>
+						<h2>视图</h2>
+						<div class="pull-right">
+							<div class="btn-group" data-toggle="buttons-radio">
+							<button class="btn btn-primary active" id="show_all_view">全部</button>
+							<button class="btn btn-primary" id="show_category_view">分类</button>
+							</div>
+						</div>
+					</div>
+					<div id="all_view">
+					</div>
+					<div id="category_view">
+					</div>
+				</div>
+			 </div>
+		</div>
+	</div>
 </body>
 
 <template name="add_item">
-  <div class="add_item">
-    <h1>Add Item</h1>
-    <input type="text" size="30" name="item" id="itemtext"/>
-    <input type="button" value="add" id="itemadd" />
-  </div>
-</template>
-
-<template name="list_view">
-  <div>
-    <div id="show_default_view"/>
-    <div id="show_category_view"/>
-  </div>
-  <div id="default_view"/>
-  <div id="category_view"/>
+	<div>
+		<h2>添加项</h2>
+		<form class="well">
+			<label>TODO</label>
+			<input id="itemtext" type="text" class="span3" placeholder="Type something…">
+			<span class="help-block">在这里输入你想添加的TODO项</span>
+			</label>
+			<button id="itemadd" type="button" class="btn">添加</button>
+		</form>
+	</div>
 </template>
 
 <template name="item_list">
-   <div class="item-list">
-    {{#each list}}
-      <li class="{{done_class}}">
-        <div class="todo">
-          <div class="destroy"></div>
-          <div class="display">
-            <input class="check" name="markdone" type="checkbox" {{{done_checkbox}}} />
-            <div class="todo-text">{{text}},{{timestamp}}</div>
-          </div>
-        </div>
-      </li>
-    {{/each}}
-  </div>
+	<div class="item-list">
+		<ul class="unstyled">
+			{{#each list}}
+				{{> list_item}}
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="list_item">
+	<li>
+		<div class="todo">
+			<span class="destroy"><i class="icon-remove"></i></span>
+			<input class="check" name="markdone" type="checkbox"/>
+			<span class="todo-text">{{text}},{{timestamp}}</span>
+		</div>
+	</li>
 </template>

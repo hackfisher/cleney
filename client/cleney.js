@@ -18,7 +18,7 @@ Meteor.subscribe('lists');
 Lists = new Meteor.Collection("lists");
 
 Meteor.startup(function () {
-	$("#default_view").append(
+	$("#all_view").append(
 	  Meteor.ui.render(function () {
 	    return Template.item_list({list: Lists.find({}, {sort: {timestamp: 1}}).map(time_mapper)});
 	  })
@@ -32,34 +32,45 @@ Meteor.startup(function () {
 	  );
 	}
 
-  $("#default_view").show();
+  $("#all_view").show();
   $("#category_view").hide();
 });
 
 // add list item
 Template.add_item.events = {
-  'click input#itemadd' : function () {
-    var value = document.getElementById("itemtext").value;
+  'click button#itemadd' : function () {
+    var value = $("input#itemtext").val();
     Lists.insert({project: "default", text: value, tags: [], timestamp: (new Date()).getTime(), status_id: 0}); 
   }
 };
 
 Template.list_view.events = {
-  'click div#show_default_view' : function () {
+  'click button#show_all_view' : function () {
     $("#category_view").hide();
-    $("#default_view").show();
+    $("#all_view").show();
   },
 
-  'click div#show_category_view' : function () {
+  'click button#show_category_view' : function () {
+	  alert("category");
     $("#default_view").hide();
     $("#category_view").show();
   }
 };
 
-Template.item_list.done_class = function () {
+Template.list_item.events = {
+	'click span.destropy' : function () {
+		Lists.update({_id: this._id}, {$set: {status_id: 2}});
+	},
+
+	'click input.check' : function () {
+		Lists.update({_id: this._id}, {$set: {status_id: 1}});
+	}
+};
+
+Template.list_item.done_class = function () {
   return this.status_id == 1 ? 'done' : '';
 };
 
-Template.item_list.done_checkbox = function () {
+Template.list_item.done_checkbox = function () {
   return this.status_id == 1 ? 'checked="checked"' : '';
 };

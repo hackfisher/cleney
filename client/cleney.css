@@ -156,17 +156,3 @@ h3 {
 .item-list .todo .edit input {
     margin-left: 35px;
 }
-
-#show_default_view {
-    background: url('/cate.gif') no-repeat 0 0;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-}
-
-#show_category_view {
-    background: url('/cate.gif') no-repeat 0 0;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-}

@@ -23,10 +23,39 @@
 				</div>
 			 </div>
 		</div>
+		<div id="login">
+			<div class="row">
+				{{> login}}
+				{{> reg}}
+			</div>
+		</div>
 	</div>
 	<div id="github"><a href="https://github.com/HackFisher" title="Fork me on GitHub">Fork me on GitHub</a></div>
 </body>
 
+<template name="login">
+	<div class="span6">
+		<form class="well form-inline">
+			<input type="text" class="input-small" id="login_user" placeholder="Email">
+			<input type="password" class="input-small" id="login_password" placeholder="Password">
+			<label class="checkbox">
+			<input type="checkbox"> Remember me
+			</label>
+			<button type="submit" class="btn" id="login_btn">Sign in</button>
+		</form>
+	</div>	
+</template>
+
+<template name="reg">
+	<div class="span6">
+		<form class="well form-inline">
+			<input type="text" id="reg_user" placeholder="Email">
+			<input type="password" id="reg_pass" placeholder="Password">
+			<input type="password" id="repeat_pass" placeholder="Repeat Password">
+			<button class="btn" id="reg_btn">Register</button>
+		</form>
+	</div>	
+</template>
 <template name="list_view">
 	<div class="pull-right">
 		<div class="btn-group" data-toggle="buttons-radio">

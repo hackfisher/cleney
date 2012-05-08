@@ -4,7 +4,7 @@
 
 <body>
 	<div class="container">
-		<div class="todos">
+		<div id="todos">
 			<h1>TODO List For Developer</h1>
 			<a href="https://github.com/HackFisher/cleney">Project on GitHub</a>
 			<div class="row">
@@ -26,11 +26,15 @@
 		<div id="login">
 			<div class="row">
 				{{> login}}
+			</div>
+		</div>
+		<div id="reg">
+			<div class="row">
 				{{> reg}}
 			</div>
 		</div>
 	</div>
-	<div id="github"><a href="https://github.com/HackFisher" title="Fork me on GitHub">Fork me on GitHub</a></div>
+	<div id="github"><a href="https://github.com/HackFisher/cleney" title="Fork me on GitHub">Fork me on GitHub</a></div>
 </body>
 
 <template name="login">

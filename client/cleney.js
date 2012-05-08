@@ -37,6 +37,9 @@ Meteor.startup(function () {
 
   $("#all_view").hide();
   $("#category_view").show();
+
+  $("div#login").hide();
+  $("div#reg").hide();
 });
 
 // add list item
@@ -125,3 +128,32 @@ Template.list_item.done_class = function () {
 Template.list_item.done_checkbox = function () {
   return this.status_id == 1 ? 'checked="checked"' : '';
 };
+
+//////////////////////////
+var TodosRouter = Backbone.Router.extend({
+  routes: {
+    "auth/login": "login",
+    "auth/reg": "reg"
+  },
+  login: function () {
+    $("div#todos").hide();
+    $("div#reg").hide();
+    $("div#login").show();
+  },
+
+  reg: function () {
+    $("div#todos").hide();
+    $("div#login").hide();
+    $("div#reg").show();
+  },
+
+  redirect: function (url) {
+    this.navigate(url, true);
+  }
+});
+
+Router = new TodosRouter;
+
+Meteor.startup(function () {
+  Backbone.history.start({pushState: true});
+});

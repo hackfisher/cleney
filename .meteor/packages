@@ -6,3 +6,7 @@
 autopublish
 bootstrap
 backbone
+accounts-google
+accounts-ui
+accounts-facebook
+accounts-passwords

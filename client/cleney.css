@@ -7,6 +7,13 @@
 	color: #999;
 }
 
+.loginbar {
+float: left;
+left: 150px;
+height: 30px;
+position: absolute;
+}
+
 #github {
 position: absolute;
 z-index: 100;

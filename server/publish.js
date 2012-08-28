@@ -1,11 +1,12 @@
 Lists = new Meteor.Collection("lists");
 
-Users = new Meteor.Collection("users");
+//Users = new Meteor.Collection("users");
 
 Meteor.publish('lists', function () {
   return Lists.find();
 });
 
+/*
 Meteor.methods({
 	reg: function (email, password) {
 		// to check the email and passord
@@ -23,3 +24,4 @@ Meteor.methods({
 		}
 	}
 });
+*/
